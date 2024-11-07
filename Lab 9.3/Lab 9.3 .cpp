@@ -43,21 +43,26 @@ bool hasRun(int values[], int size) {
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
-    const int size = 20;
-    int dieValues[size];
+    int values[20];
 
-    for (int i = 0; i < size; i++) {
-        dieValues[i] = rand() % 6 + 1;
-    }
+    while (true) {
+        for (int i = 0; i < 20; i++) {
+            values[i] = rand() % 6 + 1;
+        }
 
-    if (hasRun(dieValues, size)) {
-        cout << "has run: ";
-    }
-    else {
-        cout << "no run: ";
-    }
+        if (hasRun(values, 20)) {
+            cout << "has run: ";
+        }
+        else {
+            cout << "no run: ";
+        }
 
-    displayRun(dieValues, size);
+        displayRun(values, 20);
+
+        if (hasRun(values, 20)) {
+            break;
+        }
+    }
 
     return 0;
 }
