@@ -7,13 +7,13 @@ void displayRun(int values[], int size) {
     for (int i = 0; i < size; i++) {
         if (i > 0 && values[i] == values[i - 1]) {
             if (!inRun) {
-                cout << " (";
+                cout << "(";
                 inRun = true;
             }
         }
         else {
             if (inRun) {
-                cout << values[i - 1] << " ) ";
+                cout << values[i - 1] << ") ";
                 inRun = false;
             }
         }
@@ -32,6 +32,15 @@ void displayRun(int values[], int size) {
     }
 }
 
+bool hasRun(int values[], int size) {
+    for (int i = 1; i < size; i++) {
+        if (values[i] == values[i - 1]) {
+            return true;
+        }
+    }
+    return false;
+}
+
 int main() {
     srand(static_cast<unsigned int>(time(0)));
     const int size = 20;
@@ -41,7 +50,13 @@ int main() {
         dieValues[i] = rand() % 6 + 1;
     }
 
-    cout << "Die values: ";
+    if (hasRun(dieValues, size)) {
+        cout << "has run: ";
+    }
+    else {
+        cout << "no run: ";
+    }
+
     displayRun(dieValues, size);
 
     return 0;
